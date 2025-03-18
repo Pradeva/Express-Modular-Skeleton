@@ -1,6 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../config/db');
-const User = require('./userModel');
 
 const Car = sequelize.define('Car', {
   id: {
@@ -8,33 +7,36 @@ const Car = sequelize.define('Car', {
     primaryKey: true,
     autoIncrement: true,
   },
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'Users',
-      key: 'id',
-    },
-  },
   brand: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     allowNull: false,
   },
   model: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     allowNull: false,
   },
-  year: {
+  price: {
+    type: DataTypes.DECIMAL(15, 2), // Bisa menyimpan hingga 999 miliar
+    allowNull: false,
+  },
+  deleted: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    defaultValue: 0,
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.NOW, // Secara default, diisi waktu sekarang
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.NOW, // Secara default, diisi waktu sekarang
   },
 }, {
-  tableName: 'Cars',
+  tableName: 'cars',
   timestamps: true,
 });
-
-// Relasi
-Car.belongsTo(User, { foreignKey: 'userId'});
-User.hasMany(Car, { foreignKey: 'userId'});
 
 module.exports = Car;

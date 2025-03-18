@@ -63,8 +63,8 @@ exports.deleteUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const { token, user } = await login(email, password);
-    res.status(200).json({ message: 'Login successful', token, user });
+    const {user} = await login(email, password);
+    res.status(200).json({ message: 'Login successful', user });
   } catch (error) {
     logger.error('Error in loginUser controller', error);
     res.status(401).json({ message: error.message });

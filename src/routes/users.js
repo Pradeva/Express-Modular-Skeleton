@@ -12,7 +12,7 @@ const {
 const { authMiddleware } = require('../middlewares/authMiddleware');
 
 // GET /users - Mendapatkan semua pengguna
-router.get('/', authMiddleware, getUsers);
+router.get('/', getUsers);
 
 // GET /users/:id - Mendapatkan pengguna berdasarkan ID
 router.get('/:id', getUserById);
@@ -24,7 +24,7 @@ router.post('/register', createUser);
 router.put('/:id', updateUser);
 
 // DELETE /users/:id - Menghapus pengguna
-router.delete('/:id', deleteUser);
+// router.delete('/:id', deleteUser);
 
 //POST /users/login - Melakukan Login
 router.post('/login', loginUser);

@@ -4,6 +4,8 @@ const cors = require('cors')
 const { connectDB } = require('./config/db');
 const userRoutes = require('./routes/users');
 const carRoutes = require('./routes/cars');
+const interestTenorRoutes = require('./routes/interestTenors');
+const creditTransactionRoutes = require('./routes/creditTransactions');
 
 const logger = require('./utils/logger');
 
@@ -24,6 +26,8 @@ app.use((req, res, next) => {
 // Routes
 app.use('/users', userRoutes);
 app.use('/cars', carRoutes);
+app.use('/interest-tenors', interestTenorRoutes)
+app.use('/credit-transaction', creditTransactionRoutes)
 
 // Koneksi ke database
 connectDB();

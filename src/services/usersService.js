@@ -91,6 +91,6 @@ exports.login = async (email, password) => {
   }
 
   // Generate JWT token
-  const token = generateToken({ id: user.id, email: user.email });
-  return { token, user: { id: user.id, name: user.name, email: user.email } };
+  // const token = generateToken({ id: user.id, email: user.email });
+  return {user: { id: user.id, name: user.name, email: user.email } };
 };
